@@ -23,6 +23,8 @@ words_2 = text_2.split(' ')
 
 word_and_place_score = []
 words_in_texts_score = []
+len_words_score = 0
+similarity = 0
 
 # Compare words and their order
 for character_1, character_2 in zip(words_1, words_2):
@@ -30,6 +32,8 @@ for character_1, character_2 in zip(words_1, words_2):
         word_and_place_score.append(1)
     else:
         word_and_place_score.append(0)
+# Calculate score
+order_score = sum(word_and_place_score) / len(word_and_place_score)
 
 # Compare words without their order
 for character_1 in words_1:
@@ -37,11 +41,21 @@ for character_1 in words_1:
         words_in_texts_score.append(1)
     else:
         words_in_texts_score.append(0)
-
-# Calculate similarity score
-similarity = 0
-order_score = sum(word_and_place_score) / len(word_and_place_score)
+# Calculate score
 unordered_score = sum(words_in_texts_score) / len(words_in_texts_score)
-similarity = (order_score + unordered_score) / 2
+
+# Compare the lengths of the documents
+if len(words_1) > 0 and len(words_2) > 0:
+    if len(words_1) / len(words_2) <= 1.0:
+        len_words_score = len(words_1) / len(words_2)
+    else:
+        len_words_score = len(words_2) / len(words_1)
+else:
+    len_words_score = (order_score + unordered_score) / 2
+
+# Calculate total score
+similarity = round((order_score + unordered_score + len_words_score) / 3, 5)
+
+
 
 print(similarity)
