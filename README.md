@@ -22,6 +22,11 @@ The program will calculate and record the number of words in each document.
 Then program will divide the smaller number of words by the largest number of words.
 This division produces a value between 0.0 and 1.0, which is the score for this method.
 
+# Levenshtein Distance
+The ranking method "Words in Order" works fine. 
+However, as described in my Levenshtein Distance repository, I was introduced to Levenshtein Distance and I wanted to implement it.
+For more information about creating Levenshtein Distance and what it does, visit my [Levenshtein Distance](https://github.com/Lance-Easley/Levenshtein-Distance) repository.
+
 # Overall Score
 The final score is calculated by taking the average of all ranking methods, and rounding it to five decimal places.
 
